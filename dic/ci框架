@@ -1,1 +1,102 @@
+<?php  
+defined('BASEPATH') OR exit('No direct script access allowed');  
+class Database extends CI_Controller {   
+	public function index()  
+	{  
+ $this->load->database();  
+	#	$this->load->view('welcome_message');  
+# $this->load->view('try');  
+function searchDir($path,&$data){  
+if(is_dir($path)){  
+$dp=dir($path);  
+while($file=$dp->read()){  
+if($file!='.'&& $file!='..'){  
+searchDir($path.'/'.$file,$data);  
+}  
+}  
+$dp->close();  
+}  
+if(is_file($path)){  
+$data[]=$path;  
+}  
+}  
+function getDir($dir){  
+$data=array();  
+searchDir($dir,$data);  
+return   $data;  
+}  
+print_r(getDir('/var/www/html/abc'));  
+$alldir=getDir('/var/www/html/abc');  
+#print_r($alldir);  
+$lenofalldir=count($alldir);  
+#echo $lenofalldir;  
+$con = mysql_connect("localhost","root","11111111");  
+mysql_select_db("my_db1", $con);  
+#clean the table word  
+mysql_query("truncate table word");  
+$lines=0;  
+for($m=0;$m<$lenofalldir;++$m)  
+{  
+$file=$alldir[$m];  
+$content = file_get_contents($file);   
+preg_match_all ("/([a-zA-Z]+)/",$content,$out);  
+$length=1/2*count($out,1);  
+for($i=0;$i<$length-1;++$i)  
+{  
+$lines++;  
+$a = $out[0][$i];  
+mysql_query("INSERT INTO word (line, word,filename) VALUES ('$lines','$a','$file')");  
+}  
+}  
+#if you want to see the str   
+#print_r($out) ;  
+echo $lines;  
+	}  
+}  
+
+
+
+文件位置：/var/www/html/CodeIgniter-3.1.0/application/controllers  
+
+
+
+输入地址：http://localhost/CodeIgniter-3.1.0/index.php/Database  
+
+
+
+会检索/var/www/html/abc下的文件及文件夹并将单词输入数据库
+
+
+在数据库输入insert into final select  word,count(*) from  word group by  word ;  
+
+
+
+前提是有这两个表  
+
+
+
+<?php  
+$con = mysql_connect("localhost","root","11111111");  
+mysql_select_db("my_db1", $con);  
+$sql = "SELECT * FROM final";  
+$result = mysql_query($sql);  
+while( $row = mysql_fetch_array($result) )  
+{  
+$id = $row['word'];  
+$name = $row['count(*)'];  
+echo "<tr>";  
+echo "<td>$id</td>";  
+echo "<td>$name</td>";  
+echo "</tr>";  
+echo "<br>";  
+}  
+?>  
+
+可以将表格 final的数据输出
+
+
+
+
+
+
 
