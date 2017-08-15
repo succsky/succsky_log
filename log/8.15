@@ -5,3 +5,5 @@ github仓库太多了，而且里面也没什么东西。把几个仓库合并�
 2.创建新库，并完成本地的相关操作。
 3.在网页上创建新文件夹，pull下来。
 4.git add . ; git commit -m"" ;git push
+试了一下，可以直接在本地mkdir并git add .
+那么我之前没有把.git 文件删除，导致出错。TAT	
