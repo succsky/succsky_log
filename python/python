@@ -1,1 +1,30 @@
-
+osx 终端 输入python进入解释器
+1.在Python交互式命令行下，可以直接输入代码，然后执行，并立刻得到结果。
+2.将程序保存后在终端输入python 文件名.py 即可运行程序
+3.直接运行python 文件：在第一行加上#!/usr/bin/env python ，然后使用命令$ chmod a+x hello.py后即可在终端直接运行python
+4.print语句可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。
+5.输入：变量 = raw_input() 赋值后可以直接输入变量名查看
+6.中文：要用到中文，在第一行添加：#coding=utf-8 
+7.python 注意大小写，有缩进要求
+8.字符串，注意'' 和 "" 必要时使用 /转义字符
+9.使用list，[],字符串用""和'' 从0 开始， 可以用 负数 获取末尾元素 添加元素：列表名.append()  插入指定的位置： listname.insert(num,元素)
+删除末尾元素：listname.pop() 删除指定位置listname.pop(i)
+10.tuple和list相似，但初始化后不能修改，更安全。定义的时候元素必须确认。实际上是tuple的指向不变。
+11.条件判断：
+if    :
+	print
+elif  :
+	print
+else  :
+	print
+12.循环： 
+while  :
+	balabala
+	balabala
+print
+13.注意从raw_input()读取的内容永远以字符串的形式返回，因此不能直接比较，要先用int()把字符串转换为我们想要的整型。
+14.定义函数：
+def 函数名(x):
+	balabala
+15.递归 要注意栈与溢出
+接下来是高级特性 章节以及以后的内容
