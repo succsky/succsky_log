@@ -1,0 +1,9 @@
+#!/usr/bin/python
+#Filename: exe.py
+a=1
+time =0
+b=input()
+while time <=10:
+        print a^time	
+	time=time+1
+
